@@ -45,6 +45,12 @@ const users = db.define('user', {
     }
 });
 
+db.sync().then(() => {
+    console.log('database synced')
+}).catch((err) => {
+    console.error(new Error('cannot sync database'));
+    console.error(err);
+});
 
 module.exports = {
     db,
