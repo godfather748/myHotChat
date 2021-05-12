@@ -1,5 +1,4 @@
 const express = require('express');
-const session = require('express-session');
 const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
@@ -24,11 +23,6 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.use(session({
-    resave: true,
-    saveUninitialized: true,
-    secret: 'dqyig732gr74webfGFGEQK'
-}));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/chatpage', express.static(path.join(__dirname, '/public/chatpage.html')));
 app.use('/', require('./routes/loginSignup.js').route);
