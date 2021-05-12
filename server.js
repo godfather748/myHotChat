@@ -137,11 +137,6 @@ io.on('connection', (socket) => {
 })
 
 
-db.sync().then(() => {
-    server.listen(PORT, () => {
-        console.log(`http://localhost:${PORT}`);
-    });
-}).catch((err) => {
-    console.error(new Error('cannot sync database'));
-    console.error(err);
+server.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}`);
 });
