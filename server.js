@@ -3,9 +3,6 @@ const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
 const {
-    db
-} = require('./db/models.js');
-const {
     onlineUsers
 } = require('./routes/loginSignup.js');
 
