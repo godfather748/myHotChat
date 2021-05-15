@@ -16,48 +16,53 @@ route.get('/signup', (req, res) => {
 let onlineUsers = []
 
 route.post('/', async (req, res) => {
-    const user = await users.findOne({
-        where: {
-            username: req.body.username
-        }
-    });
-    if (!user) {
-        return res.render('login', {
-            error: `Username doesn't exist!!`
+    try {
+        const user = await users.findOne({
+            where: {
+                username: req.body.username
+            }
         });
-    };
-    if (user.password != req.body.password) {
-        return res.render('login', {
-            error: `Incorrect password!!`
-        });
-    };
-    onlineUsers.push(req.body.username)
-    res.redirect('/chatpage');
+        if (!user) {
+            return res.render('login', {
+                error: `Username doesn't exist!!`
+            });
+        };
+        if (user.password != req.body.password) {
+            return res.render('login', {
+                error: `Incorrect password!!`
+            });
+        };
+        onlineUsers.push(req.body.username)
+        res.redirect('/chatpage');
+    } catch (err) {
+        console.error(new Error('cannot login'))
+        console.error(err)
+    }
 })
 
 
 route.post('/signup', async (req, res) => {
-    const user1 = await users.findOne({
-        where: {
-            username: req.body.username
-        }
-    });
-    if (user1) {
-        return res.render('signup', {
-            error: `Username already exists!!`
-        });
-    };
-    const user2 = await users.findOne({
-        where: {
-            email: req.body.email
-        }
-    });
-    if (user2) {
-        return res.render('signup', {
-            error: `User with this email already exists!!`
-        });
-    };
     try {
+        const user1 = await users.findOne({
+            where: {
+                username: req.body.username
+            }
+        });
+        if (user1) {
+            return res.render('signup', {
+                error: `Username already exists!!`
+            });
+        };
+        const user2 = await users.findOne({
+            where: {
+                email: req.body.email
+            }
+        });
+        if (user2) {
+            return res.render('signup', {
+                error: `User with this email already exists!!`
+            });
+        };
         await users.create({
             username: req.body.username,
             email: req.body.email,
