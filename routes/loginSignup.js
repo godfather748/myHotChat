@@ -53,6 +53,11 @@ route.post('/signup', async (req, res) => {
                 error: `Username already exists!!`
             });
         };
+    } catch (err) {
+        console.error(new Error('username problem'))
+        console.error(err)
+    }
+    try {
         const user2 = await users.findOne({
             where: {
                 email: req.body.email
@@ -63,6 +68,11 @@ route.post('/signup', async (req, res) => {
                 error: `User with this email already exists!!`
             });
         };
+    } catch (err) {
+        console.error(new Error('email problem'))
+        console.error(err)
+    }
+    try {
         await users.create({
             username: req.body.username,
             email: req.body.email,
