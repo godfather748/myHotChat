@@ -15,7 +15,7 @@ if (process.env.DATABASE_URL) {
         ssl: true,
         protocol: "postgres",
         port: 5432,
-        host: "ec2-54-205-183-19.compute-1.amazonaws.com",
+        host: "ec2-54-87-112-29.compute-1.amazonaws.com",
         logging: false, //true
     });
 } else {
