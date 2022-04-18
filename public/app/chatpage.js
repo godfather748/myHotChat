@@ -35,7 +35,7 @@ $(() => {
 
     function onlinePeople(data) {
         $('#onlinePeople').empty()
-        $('#onlinePeople').append($(`<li class="contact-link">
+        $('#onlinePeople').append($(`<li class="contact-link Everyone">
                                     <div class="d-flex bd-highlight">
                                         <div class="img_cont">
                                             <!-- class="img_cont" -->
